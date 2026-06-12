@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+   BIG STYLE 083 — Site Principal
+  ============================================================
+   Arquivo principal do site. Estrutura completa em HTML puro.
+
+   COMO EDITAR TEXTOS:
+   Encontre o texto no HTML e altere diretamente.
+
+   COMO EDITAR PRODUTOS:
+   Edite o arquivo js/products.js
+
+   COMO EDITAR WHATSAPP / INSTAGRAM:
+   Edite o arquivo js/whatsapp.js
+
+   COMO EDITAR CORES:
+   Edite as variáveis em css/style.css (seção :root)
+
+   COMO TROCAR IMAGENS:
+   1. Copie a nova imagem para assets/images/
+   2. Atualize o caminho em js/products.js ou aqui no HTML
+  ============================================================
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BIG STYLE 083 — Moda street para quem cria tendencia. Nascidos das ruas de Santa Luzia da Paraiba." />
+  <meta property="og:title" content="BIG STYLE 083 — Streetwear Santa Luzia PB" />
+  <meta property="og:description" content="Moda street para quem cria tendencia. Colecao 2024." />
+  <meta property="og:image" content="public/opengraph.jpg" />
+  <title>BIG STYLE 083 — Moda Street Santa Luzia PB</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     HEADER — Navegação fixa no topo
+     Para editar links: veja a lista de <a> abaixo
+     Para editar WhatsApp: edite js/whatsapp.js
+     ══════════════════════════════════════════════════════════ -->
+<header id="header" class="header">
+  <div class="container">
+    <div class="header__inner">
+
+      <!-- Logo -->
+      <a href="#inicio" class="header__logo" aria-label="BIG STYLE 083 — Ir para o início">
+        <span class="header__logo-nome">BIG STYLE</span>
+        <span class="header__logo-numero">083</span>
+      </a>
+
+      <!-- Navegação desktop (>= 1024px) -->
+      <nav class="nav-desktop" aria-label="Navegação principal">
+        <a href="#inicio"     class="nav-desktop__link">Inicio</a>
+        <a href="#produtos"   class="nav-desktop__link">Produtos</a>
+        <a href="#categorias" class="nav-desktop__link">Categorias</a>
+        <a href="#novidades"  class="nav-desktop__link">Novidades</a>
+        <a href="#sobre"      class="nav-desktop__link">Sobre Nos</a>
+        <a href="#contato"    class="nav-desktop__link">Contato</a>
+      </nav>
+
+      <!-- Ações -->
+      <div class="header__acoes">
+
+        <!-- Busca -->
+        <button class="header__btn-icone" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+
+        <!-- Carrinho -->
+        <button class="header__btn-icone header__btn-carrinho" aria-label="Carrinho">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </button>
+
+        <!-- Botão WhatsApp (sm+) -->
+        <a href="#" data-whatsapp class="header__btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Fale Conosco</span>
+        </a>
+
+        <!-- Hambúrguer (mobile) -->
+        <button id="btn-menu-mobile" class="header__btn-menu" aria-label="Abrir menu" aria-expanded="false">
+          <span id="icone-menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </span>
+          <span id="icone-fechar" style="display:none">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div id="menu-mobile" class="menu-mobile" aria-hidden="true">
+    <nav class="menu-mobile__nav">
+      <a href="#inicio"     class="menu-mobile__link">Inicio</a>
+      <a href="#produtos"   class="menu-mobile__link">Produtos</a>
+      <a href="#categorias" class="menu-mobile__link">Categorias</a>
+      <a href="#novidades"  class="menu-mobile__link">Novidades</a>
+      <a href="#sobre"      class="menu-mobile__link">Sobre Nos</a>
+      <a href="#contato"    class="menu-mobile__link">Contato</a>
+      <a href="#" data-whatsapp class="menu-mobile__btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Falar no WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════
+     1. HERO — Seção de apresentação principal
+     Para trocar o mascote: troque assets/images/mascote.png
+     ══════════════════════════════════════════════════════════ -->
+<section id="inicio" class="hero">
+
+  <div class="hero__fundo-grade" aria-hidden="true"></div>
+  <div class="hero__fundo-brilho" aria-hidden="true"></div>
+
+  <!-- Número 083 fantasma -->
+  <div class="hero__ghost-083" id="hero-ghost-083" aria-hidden="true">
+    <span>083</span>
+  </div>
+
+  <!-- Linhas diagonais decorativas -->
+  <div class="hero__linhas-decorativas" aria-hidden="true">
+    <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+      <line x1="600" y1="0" x2="0"    y2="800" stroke="#7B2EFF" stroke-width="1.5" stroke-dasharray="8 16" opacity="0.5"/>
+      <line x1="700" y1="0" x2="100"  y2="800" stroke="#A855F7" stroke-width="1"   stroke-dasharray="4 20" opacity="0.3"/>
+      <line x1="500" y1="0" x2="-100" y2="800" stroke="#7B2EFF" stroke-width="0.8" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="hero__conteudo container">
+    <div class="hero__grid">
+
+      <!-- Coluna esquerda: texto -->
+      <div class="hero__texto" id="hero-texto">
+        <p class="hero__eyebrow">Moda Street — Colecao 2024</p>
+
+        <h1 class="hero__titulo">
+          <span class="hero__titulo-linha1">SEU ESTILO.</span>
+          <span class="hero__titulo-linha2">STREETWEAR.</span>
+        </h1>
+
+        <p class="hero__subtitulo">Moda street para quem cria tendencia.</p>
+
+        <div class="hero__botoes">
+          <a href="#novidades" class="hero__btn-colecao">
+            Ver Colecao
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#" data-whatsapp class="hero__btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <p class="hero__stat-valor">+5.000</p>
+            <p class="hero__stat-rotulo">Clientes</p>
+          </div>
+          <div class="hero__stat">
+            <p class="hero__stat-valor">4.9</p>
+            <p class="hero__stat-rotulo">Avaliacao</p>
+          </div>
+          <div class="hero__stat">
+            <p class="hero__stat-valor">083</p>
+            <p class="hero__stat-rotulo">Santa Luzia PB</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna direita: mascote -->
+      <div class="hero__mascote-wrapper" id="hero-mascote">
+        <div class="hero__aura" aria-hidden="true"></div>
+        <img
+          src="assets/images/mascote.png"
+          alt="BIG STYLE 083 mascote - gorila urbano com coroa"
+          class="hero__mascote"
+        />
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero__gradiente-fim" aria-hidden="true"></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     2. BARRA DE BENEFÍCIOS
+     ══════════════════════════════════════════════════════════ -->
+<section class="features-bar" aria-label="Benefícios">
+  <div class="container">
+    <div class="features-bar__grid">
+
+      <div class="feature-item anim-subir atraso-1">
+        <div class="feature-item__icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div>
+          <p class="feature-item__titulo">Envio Rapido</p>
+          <p class="feature-item__subtitulo">Para Santa Luzia - PB</p>
+        </div>
+      </div>
+
+      <div class="feature-item anim-subir atraso-2">
+        <div class="feature-item__icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div>
+          <p class="feature-item__titulo">Compra Segura</p>
+          <p class="feature-item__subtitulo">Ambiente 100% seguro</p>
+        </div>
+      </div>
+
+      <div class="feature-item anim-subir atraso-3">
+        <div class="feature-item__icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <p class="feature-item__titulo">Parcelamento 6x</p>
+          <p class="feature-item__subtitulo">Em ate 6x sem juros</p>
+        </div>
+      </div>
+
+      <div class="feature-item anim-subir atraso-4">
+        <div class="feature-item__icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+        </div>
+        <div>
+          <p class="feature-item__titulo">Troca Facil</p>
+          <p class="feature-item__subtitulo">Trocas e devolucoes</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     3. CATEGORIAS
+     ══════════════════════════════════════════════════════════ -->
+<section id="categorias" class="categories" aria-label="Categorias">
+  <div class="container">
+
+    <div class="categories__cabecalho anim-subir">
+      <span class="secao-eyebrow">Explore</span>
+      <h2 class="secao-titulo categories__titulo">CATEGORIAS</h2>
+      <div class="divisor-secao">
+        <div class="divisor-secao__linha"></div>
+        <div class="divisor-secao__barra"></div>
+        <div class="divisor-secao__linha"></div>
+      </div>
+    </div>
+
+    <div class="categories__grid">
+
+      <button class="category-item anim-escalar atraso-1" aria-label="Camisetas">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Camisetas</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-2" aria-label="Bermudas">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Bermudas</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-3" aria-label="Calcas">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Calcas</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-4" aria-label="Bones">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Bones</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-5" aria-label="Acessorios">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/>
+            <path d="M16.51 17.35l-.35 3.83a2 2 0 01-1.99 1.82H9.83a2 2 0 01-1.99-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 019.83 1h4.33a2 2 0 011.99 1.82l.35 3.83"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Acessorios</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-6" aria-label="Jaquetas">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Jaquetas</span>
+      </button>
+
+      <button class="category-item anim-escalar atraso-7" aria-label="Outlet">
+        <div class="category-item__circulo">
+          <div class="category-item__circulo-brilho"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+          </svg>
+        </div>
+        <span class="category-item__nome">Outlet</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     4. NOVIDADES — Carrossel de produtos
+     Produtos renderizados via js/products.js
+     ══════════════════════════════════════════════════════════ -->
+<section id="novidades" class="new-arrivals" aria-label="Novidades">
+  <div class="container">
+
+    <div class="new-arrivals__cabecalho">
+      <div class="anim-esquerda">
+        <span class="secao-eyebrow">Confira os Lancamentos</span>
+        <h2 class="secao-titulo" style="font-size: clamp(3rem, 7vw, 4.5rem);">NOVIDADES</h2>
+      </div>
+      <div class="new-arrivals__controles anim-subir">
+        <button id="btn-carrossel-anterior" class="carrossel__btn-nav" aria-label="Produto anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="btn-carrossel-proximo" class="carrossel__btn-nav" aria-label="Proximo produto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="carrossel__btn-ver-todos" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver Todos</button>
+      </div>
+    </div>
+
+    <!-- Preenchido por js/products.js -->
+    <div id="carrossel-produtos" class="carrossel__pista" role="list" aria-label="Carrossel de produtos"></div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     5. MAIS VENDIDOS
+     Produtos com destaque:true em js/products.js
+     ══════════════════════════════════════════════════════════ -->
+<section id="produtos" class="best-sellers" aria-label="Mais Vendidos">
+  <div class="container">
+
+    <div class="best-sellers__cabecalho anim-subir">
+      <span class="secao-eyebrow">Os Favoritos</span>
+      <h2 class="secao-titulo best-sellers__titulo">MAIS VENDIDOS</h2>
+      <div class="best-sellers__divisor">
+        <div class="best-sellers__divisor-linha"></div>
+        <svg class="best-sellers__divisor-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <div class="best-sellers__divisor-linha"></div>
+      </div>
+    </div>
+
+    <!-- Preenchido por js/products.js -->
+    <div id="grid-mais-vendidos" class="best-sellers__grid" role="list" aria-label="Mais vendidos"></div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     6. NOSSA HISTÓRIA
+     Para editar: altere os parágrafos abaixo
+     ══════════════════════════════════════════════════════════ -->
+<section id="sobre" class="brand-story" aria-label="Nossa História">
+
+  <div class="brand-story__borda-topo" aria-hidden="true"></div>
+
+  <div class="brand-story__ghost-083" aria-hidden="true">
+    <span>083</span>
+  </div>
+
+  <div class="container brand-story__grid">
+
+    <div class="anim-esquerda">
+      <span class="secao-eyebrow">Nossa Historia</span>
+
+      <h2 class="brand-story__titulo bebas">
+        MAIS QUE ROUPA.<br>
+        <span class="brand-story__titulo-gradiente">UMA IDENTIDADE.</span>
+      </h2>
+
+      <div class="brand-story__paragrafos">
+        <p>
+          BIG STYLE 083 nasceu das ruas de Santa Luzia da Paraiba. Mais do que uma marca,
+          somos um movimento — para quem vive o hip-hop, o street e a cultura urbana.
+        </p>
+        <p>
+          Cada peca carrega atitude, exclusividade e o orgulho de ser 083. Nosso estilo
+          e reflexo da nossa identidade: forte, autentica e sem compromisos.
+        </p>
+        <p class="brand-story__destaque">Veste o street. Representa o 083.</p>
+      </div>
+
+      <a href="#" data-instagram class="brand-story__btn-instagram" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        Seguir no Instagram
+      </a>
+    </div>
+
+    <div class="brand-story__stats-grid anim-escalar">
+      <div class="stat-card atraso-1">
+        <p class="stat-card__valor bebas">+5.000</p>
+        <p class="stat-card__rotulo">Clientes Satisfeitos</p>
+      </div>
+      <div class="stat-card atraso-2">
+        <p class="stat-card__valor bebas">2020</p>
+        <p class="stat-card__rotulo">Ano de Fundacao</p>
+      </div>
+      <div class="stat-card atraso-3">
+        <p class="stat-card__valor bebas">100%</p>
+        <p class="stat-card__rotulo">Estilo Autentico</p>
+      </div>
+      <div class="stat-card atraso-4">
+        <p class="stat-card__valor bebas">083</p>
+        <p class="stat-card__rotulo">Sao Luis - MA</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="brand-story__borda-fundo" aria-hidden="true"></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     7. FEED DO INSTAGRAM
+     Fotos renderizadas via js/products.js (fotosLoja)
+     ══════════════════════════════════════════════════════════ -->
+<section class="instagram-feed" aria-label="Instagram">
+  <div class="container">
+
+    <div class="instagram-feed__cabecalho anim-subir">
+      <div class="instagram-feed__titulo-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+        <h2 class="instagram-feed__titulo bebas">@BIGSTYLE.083</h2>
+      </div>
+      <p class="instagram-feed__subtitulo">No Instagram</p>
+    </div>
+
+    <!-- Preenchido por js/products.js -->
+    <div id="grade-instagram" class="instagram-feed__grade" role="list" aria-label="Fotos do Instagram"></div>
+
+    <div class="instagram-feed__rodape">
+      <a href="#" data-instagram class="instagram-feed__btn-seguir" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        Ver Instagram
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     8. DEPOIMENTOS
+     Renderizados via js/products.js (depoimentos)
+     ══════════════════════════════════════════════════════════ -->
+<section class="testimonials" aria-label="Depoimentos">
+  <div class="container">
+
+    <div class="testimonials__cabecalho anim-subir">
+      <span class="secao-eyebrow">Avaliacoes</span>
+      <h2 class="secao-titulo testimonials__titulo">O QUE DIZEM OS CLIENTES</h2>
+    </div>
+
+    <!-- Preenchido por js/products.js -->
+    <div id="grid-depoimentos" class="testimonials__grid" role="list" aria-label="Depoimentos"></div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     9. BANNER PROMOCIONAL
+     Para editar cidade/valor: altere os textos abaixo
+     ══════════════════════════════════════════════════════════ -->
+<section class="promo-banner" aria-label="Frete grátis">
+  <div class="promo-banner__fundo" aria-hidden="true"></div>
+  <div class="promo-banner__grade" aria-hidden="true"></div>
+  <div class="promo-banner__orbes" aria-hidden="true"></div>
+
+  <div class="promo-banner__conteudo anim-subir">
+    <div class="promo-banner__eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+      <p class="promo-banner__eyebrow-texto">Oferta Especial</p>
+    </div>
+    <h2 class="promo-banner__titulo">FRETE GRATIS</h2>
+    <p class="promo-banner__cidade">Santa Luzia - PB nas compras acima de</p>
+    <p class="promo-banner__valor bebas">R$ 200,00</p>
+    <a href="#novidades" class="promo-banner__btn">
+      Aproveitar Agora
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     RODAPÉ
+     ══════════════════════════════════════════════════════════ -->
+<footer id="contato" class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__col-marca">
+        <div class="footer__logo">
+          <span class="footer__logo-nome">BIG STYLE</span>
+          <span class="footer__logo-numero">083</span>
+        </div>
+        <p class="footer__descricao">
+          Moda street para quem cria tendencia. Nascidos das ruas de Santa Luzia da Paraiba,
+          representamos a cultura urbana com atitude e exclusividade.
+        </p>
+        <div class="footer__redes-sociais">
+          <a href="#" data-instagram class="footer__social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" data-whatsapp class="footer__social-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer__titulo-col">Institucional</h4>
+        <ul class="footer__lista">
+          <li><a href="#sobre"  class="footer__link">Sobre Nos</a></li>
+          <li><a href="#sobre"  class="footer__link">Nossa Historia</a></li>
+          <li><a href="#"       class="footer__link">Blog</a></li>
+          <li><a href="#"       class="footer__link">Trabalhe Conosco</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__titulo-col">Categorias</h4>
+        <ul class="footer__lista">
+          <li><a href="#categorias" class="footer__link">Camisetas</a></li>
+          <li><a href="#categorias" class="footer__link">Bermudas</a></li>
+          <li><a href="#categorias" class="footer__link">Calcas</a></li>
+          <li><a href="#categorias" class="footer__link">Bones</a></li>
+          <li><a href="#categorias" class="footer__link">Jaquetas</a></li>
+          <li><a href="#categorias" class="footer__link">Outlet</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__titulo-col">Atendimento</h4>
+        <ul class="footer__lista">
+          <li><a href="#" class="footer__link">Politica de Troca</a></li>
+          <li><a href="#" class="footer__link">Frete e Entrega</a></li>
+          <li><a href="#" class="footer__link">Pagamentos</a></li>
+          <li><a href="#" class="footer__link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__titulo-col">Contato</h4>
+        <ul class="footer__contato-lista">
+          <li class="footer__contato-item">
+            <svg class="footer__contato-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.5 19.79 19.79 0 01.67 2.82 2 2 0 012.66 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.84a16 16 0 006.29 6.29l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <div>
+              <p class="footer__contato-texto">(83) 99999-9999</p>
+              <p class="footer__contato-sub">Seg a Sab — 8h as 19h</p>
+            </div>
+          </li>
+          <li class="footer__contato-item">
+            <svg class="footer__contato-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <p class="footer__contato-texto">contato@bigstyle083.com</p>
+          </li>
+          <li class="footer__contato-item">
+            <svg class="footer__contato-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <p class="footer__contato-texto">Santa Luzia - PB</p>
+              <p class="footer__contato-sub">Brasil, 083</p>
+            </div>
+          </li>
+        </ul>
+        <a href="#" data-whatsapp class="footer__btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Chamar no Zap
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer__barra-inferior">
+    <div class="container">
+      <div class="footer__copyright">
+        <p>© 2024 Big Style 083 — Todos os direitos reservados.</p>
+        <p>Desenvolvido com <span class="footer__coracaoo">♥</span> para o street.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Botão Flutuante WhatsApp -->
+<a href="#" data-whatsapp class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SCRIPTS (ordem obrigatória: whatsapp → products → animations → main)
+     ══════════════════════════════════════════════════════════ -->
+<script src="js/whatsapp.js"></script>
+<script src="js/products.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

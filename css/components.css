@@ -1,0 +1,1524 @@
+/*
+ * ============================================================
+ *  COMPONENTES — BIG STYLE 083
+ * ============================================================
+ *  Estilos específicos de cada seção e componente do site.
+ *  Organização:
+ *
+ *   1. Header
+ *   2. Hero
+ *   3. Barra de Benefícios (FeaturesBar)
+ *   4. Categorias
+ *   5. Novidades (Carrossel)
+ *   6. Cards de Produto
+ *   7. Mais Vendidos
+ *   8. Nossa História (BrandStory)
+ *   9. Feed do Instagram
+ *  10. Depoimentos
+ *  11. Banner Promocional (PromoBanner)
+ *  12. Rodapé (Footer)
+ *  13. Botão Flutuante WhatsApp
+ * ============================================================
+ */
+
+
+/* ── 1. HEADER ──────────────────────────────────────────────
+   Fixo no topo, começa transparente, fica sólido ao rolar.   */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
+  animation: entrar-topo 0.6s ease-out forwards;
+}
+
+/* Estado após rolar 40px (adicionado via JS) */
+.header--rolado {
+  background-color: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(42, 42, 42, 0.8);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem; /* 64px */
+}
+
+/* Logo */
+.header__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  text-decoration: none;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.header__logo:hover { transform: scale(1.03); }
+
+.header__logo-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--cor-texto);
+  letter-spacing: 0.1em;
+}
+.header__logo-numero {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--cor-destaque);
+  letter-spacing: 0.1em;
+}
+
+/* Navegação desktop (hidden no mobile — ver responsive.css) */
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-desktop__link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #d1d5db;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-desktop__link:hover { color: var(--cor-destaque); }
+
+/* Ações do header (busca, carrinho, WhatsApp, hambúrguer) */
+.header__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__btn-icone {
+  padding: 0.5rem;
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__btn-icone:hover { color: var(--cor-texto); transform: scale(1.1); }
+
+.header__btn-carrinho {
+  position: relative;
+}
+
+.header__btn-whatsapp {
+  display: none; /* aparece em sm — ver responsive.css */
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.header__btn-whatsapp:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
+.header__btn-whatsapp svg { width: 16px; height: 16px; }
+
+.header__btn-menu {
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.header__btn-menu:hover { color: var(--cor-texto); }
+
+/* Menu Mobile (dropdown) */
+.menu-mobile {
+  display: none;
+  flex-direction: column;
+  background-color: #111111;
+  border-top: 1px solid var(--cor-borda);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.menu-mobile--aberto {
+  display: flex;
+  max-height: 500px;
+  opacity: 1;
+}
+
+.menu-mobile__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.25rem;
+}
+
+.menu-mobile__link {
+  display: block;
+  padding: 0.75rem 0;
+  color: #d1d5db;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--cor-borda);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.menu-mobile__link:hover { color: var(--cor-texto); }
+
+.menu-mobile__btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+.menu-mobile__btn-whatsapp:hover {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+.menu-mobile__btn-whatsapp svg { width: 18px; height: 18px; }
+
+
+/* ── 2. HERO ────────────────────────────────────────────────
+   Seção de apresentação principal.                           */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--cor-fundo);
+}
+
+/* Grade urbana de fundo */
+.hero__fundo-grade {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(123, 46, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 46, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Brilho radial roxo */
+.hero__fundo-brilho {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 60% at 60% 50%,
+    rgba(123, 46, 255, 0.18) 0%,
+    rgba(76, 29, 149, 0.08) 50%,
+    transparent 100%);
+}
+
+/* Número 083 fantasma */
+.hero__ghost-083 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2rem;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.1s linear;
+}
+.hero__ghost-083 span {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(180px, 30vw, 420px);
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(123, 46, 255, 0.15);
+  line-height: 1;
+  user-select: none;
+}
+
+/* Linhas diagonais decorativas */
+.hero__linhas-decorativas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.1;
+}
+
+/* Conteúdo em grade de duas colunas */
+.hero__conteudo {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Coluna de texto */
+.hero__texto {
+  text-align: left;
+  will-change: transform;
+}
+
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--cor-destaque);
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: anim-subir-in 0.5s 0.1s ease forwards;
+}
+
+.hero__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(60px, 10vw, 120px);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: anim-esquerda-in 0.7s 0.2s ease forwards;
+}
+.hero__titulo-linha1 { color: var(--cor-texto); display: block; }
+.hero__titulo-linha2 {
+  display: block;
+  background: linear-gradient(90deg, #A855F7 0%, #7B2EFF 60%, #4C1D95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+}
+
+.hero__subtitulo {
+  color: #9ca3af;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  max-width: 28rem;
+  opacity: 0;
+  animation: anim-subir-in 0.6s 0.5s ease forwards;
+}
+
+.hero__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  opacity: 0;
+  animation: anim-subir-in 0.6s 0.7s ease forwards;
+}
+
+/* Botão primário do Hero */
+.hero__btn-colecao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background-color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+  color: var(--cor-texto);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.hero__btn-colecao:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 60px rgba(123, 46, 255, 0.3);
+  transform: scale(1.03);
+}
+.hero__btn-colecao svg { width: 16px; height: 16px; }
+
+/* Botão secundário do Hero */
+.hero__btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background-color: transparent;
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  color: var(--cor-destaque);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.hero__btn-whatsapp:hover {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  color: var(--cor-texto);
+  transform: scale(1.03);
+}
+.hero__btn-whatsapp svg { width: 16px; height: 16px; }
+
+/* Estatísticas (clientes, avaliação, cidade) */
+.hero__stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--cor-borda);
+  opacity: 0;
+  animation: anim-subir-in 0.6s 1s ease forwards;
+}
+.hero__stat-valor {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--cor-destaque);
+}
+.hero__stat-rotulo {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Coluna do mascote */
+.hero__mascote-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  opacity: 0;
+  animation: anim-direita-in 0.8s 0.3s ease forwards;
+}
+
+/* Aura roxa atrás do mascote */
+.hero__aura {
+  position: absolute;
+  width: min(480px, 90vw);
+  height: min(480px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 46, 255, 0.3) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+/* A imagem do mascote com animação de flutuação */
+.hero__mascote {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 28rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(168, 85, 247, 0.4));
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+/* Gradiente de transição para a próxima seção */
+.hero__gradiente-fim {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--cor-fundo));
+}
+
+/* Animações de entrada do Hero (separadas pois ocorrem ao carregar) */
+@keyframes anim-subir-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes anim-esquerda-in {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes anim-direita-in {
+  from { opacity: 0; transform: translateX(80px) scale(0.9); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+
+/* ── 3. BARRA DE BENEFÍCIOS ─────────────────────────────────
+   Grade com 4 diferenciais da loja.                          */
+.features-bar {
+  padding: 2rem 0;
+  background-color: var(--cor-fundo-card);
+  border-top: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.features-bar__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  cursor: default;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-item:hover {
+  transform: scale(1.05);
+  background-color: rgba(123, 46, 255, 0.08);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.feature-item__icone {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(123, 46, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-destaque);
+}
+.feature-item__icone svg { width: 18px; height: 18px; }
+
+.feature-item__titulo {
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.feature-item__subtitulo {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+
+/* ── 4. CATEGORIAS ──────────────────────────────────────────
+   Círculos clicáveis com ícone e nome da categoria.          */
+.categories {
+  padding: 4rem 0;
+  background-color: var(--cor-fundo);
+}
+
+.categories__cabecalho {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.categories__titulo {
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.categories__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.category-item:hover { transform: scale(1.12); }
+
+.category-item__circulo {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-fundo-card);
+  border: 2px solid var(--cor-borda);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.category-item:hover .category-item__circulo {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(123, 46, 255, 0.1);
+}
+
+.category-item__circulo-brilho {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.category-item:hover .category-item__circulo-brilho { opacity: 1; }
+
+.category-item__circulo svg {
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  color: var(--cor-destaque);
+}
+
+.category-item__nome {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+.category-item:hover .category-item__nome { color: var(--cor-texto); }
+
+
+/* ── 5. NOVIDADES (CARROSSEL) ───────────────────────────────
+   Carrossel com rolagem horizontal e botões ◀ ▶.             */
+.new-arrivals {
+  padding: 4rem 0;
+  background-color: var(--cor-fundo-meio);
+  overflow: hidden;
+}
+
+.new-arrivals__cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.new-arrivals__controles {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carrossel__btn-nav {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-card);
+  color: #9ca3af;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.carrossel__btn-nav:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-destaque);
+  transform: scale(1.05);
+}
+.carrossel__btn-nav svg { width: 18px; height: 18px; }
+
+.carrossel__btn-ver-todos {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-destaque);
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.carrossel__btn-ver-todos:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  box-shadow: 0 0 20px rgba(123, 46, 255, 0.4);
+}
+
+/* Container scrollável do carrossel */
+.carrossel__pista {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carrossel__pista::-webkit-scrollbar { display: none; }
+
+
+/* ── 6. CARDS DE PRODUTO ────────────────────────────────────
+   Card reutilizável (usado no carrossel de Novidades).       */
+.product-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 14rem;
+  border-radius: var(--raio-card);
+  overflow: hidden;
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.45), 0 0 60px rgba(123, 46, 255, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cor-texto);
+  background-color: var(--cor-primaria);
+}
+
+.product-card__imagem-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background-color: var(--cor-fundo-img);
+}
+.product-card__imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.product-card:hover .product-card__imagem { transform: scale(1.08); }
+
+.product-card__imagem-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(17, 17, 17, 0.7) 0%, transparent 60%);
+}
+
+.product-card__corpo { padding: 1rem; }
+.product-card__nome {
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+.product-card__rodape {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.product-card__preco {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+  letter-spacing: 0.05em;
+}
+.product-card__parcelas {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+.product-card__btn-add {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card__btn-add:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
+}
+
+
+/* ── 7. MAIS VENDIDOS ───────────────────────────────────────
+   Grade 2→4 colunas com os produtos em destaque.             */
+.best-sellers {
+  padding: 4rem 0;
+  background-color: var(--cor-fundo);
+}
+
+.best-sellers__cabecalho {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.best-sellers__titulo { font-size: clamp(3rem, 7vw, 4.5rem); font-weight: 700; }
+
+.best-sellers__divisor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.best-sellers__divisor-linha {
+  height: 1px;
+  width: 4rem;
+  background-color: var(--cor-borda);
+}
+.best-sellers__divisor-icone {
+  color: var(--cor-primaria);
+  width: 20px;
+  height: 20px;
+}
+
+.best-sellers__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Card dos mais vendidos */
+.destaque-card {
+  position: relative;
+  border-radius: var(--raio-card);
+  overflow: hidden;
+  background-color: var(--cor-fundo-card);
+  border: 1px solid var(--cor-borda);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.destaque-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
+}
+
+/* Faixa "Top Vendas" no canto */
+.destaque-card__ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+}
+.destaque-card__ribbon::before {
+  content: "Top Vendas";
+  position: absolute;
+  top: 18px;
+  right: -28px;
+  width: 120px;
+  height: 26px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  line-height: 26px;
+  text-align: center;
+}
+
+.destaque-card__imagem-wrapper {
+  height: 200px;
+  background-color: var(--cor-fundo-img);
+  overflow: hidden;
+}
+.destaque-card__imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.destaque-card:hover .destaque-card__imagem { transform: scale(1.1); }
+
+.destaque-card__corpo { padding: 1rem; }
+.destaque-card__nome {
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.destaque-card__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.destaque-card__preco {
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  color: var(--cor-texto);
+}
+.destaque-card__parcelas {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+.destaque-card__btn-add {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.destaque-card__btn-add:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
+}
+
+
+/* ── 8. NOSSA HISTÓRIA (BRAND STORY) ───────────────────────
+   Duas colunas: texto e grade de estatísticas.               */
+.brand-story {
+  position: relative;
+  padding: 5rem 0 8rem;
+  background-color: var(--cor-fundo-meio);
+  overflow: hidden;
+}
+
+/* Bordas com gradiente */
+.brand-story__borda-topo,
+.brand-story__borda-fundo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cor-primaria), transparent);
+}
+.brand-story__borda-topo { top: 0; }
+.brand-story__borda-fundo { bottom: 0; }
+
+/* Número 083 fantasma */
+.brand-story__ghost-083 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  pointer-events: none;
+}
+.brand-story__ghost-083 span {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(200px, 35vw, 500px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(123, 46, 255, 0.08);
+  user-select: none;
+  line-height: 1;
+  margin-right: -60px;
+}
+
+.brand-story__grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.brand-story__titulo {
+  font-size: clamp(50px, 7vw, 96px);
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+.brand-story__titulo-gradiente {
+  background: linear-gradient(90deg, #A855F7 0%, #7B2EFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-story__paragrafos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #9ca3af;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: none;
+}
+.brand-story__destaque {
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+.brand-story__btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid var(--cor-destaque);
+  color: var(--cor-destaque);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+.brand-story__btn-instagram:hover {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.5);
+  transform: scale(1.03);
+}
+.brand-story__btn-instagram svg { width: 18px; height: 18px; }
+
+/* Grade de estatísticas */
+.brand-story__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.stat-card {
+  border-radius: var(--raio-card);
+  border: 1px solid var(--cor-borda);
+  padding: 1.5rem;
+  text-align: center;
+  background-color: var(--cor-fundo-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+.stat-card__valor {
+  font-family: var(--fonte-titulo);
+  font-size: 2.25rem;
+  color: var(--cor-destaque);
+  margin-bottom: 0.25rem;
+}
+.stat-card__rotulo {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+
+/* ── 9. FEED DO INSTAGRAM ───────────────────────────────────
+   Grade 3×3 de fotos com overlay no hover.                   */
+.instagram-feed {
+  padding: 4rem 0;
+  background-color: var(--cor-fundo-card);
+}
+
+.instagram-feed__cabecalho {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.instagram-feed__titulo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.instagram-feed__titulo-wrapper svg {
+  color: var(--cor-destaque);
+  width: 28px;
+  height: 28px;
+}
+.instagram-feed__titulo {
+  font-size: clamp(1.5rem, 5vw, 3.75rem);
+  font-weight: 700;
+  color: var(--cor-texto);
+  letter-spacing: 0.08em;
+}
+.instagram-feed__subtitulo {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+}
+
+.instagram-feed__grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.instagram-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  aspect-ratio: 1;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+}
+.instagram-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.instagram-item:hover img { transform: scale(1.1); }
+
+.instagram-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(123, 46, 255, 0.65);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.instagram-item:hover .instagram-item__overlay { opacity: 1; }
+
+.instagram-item__icone {
+  width: 2rem;
+  height: 2rem;
+  color: var(--cor-texto);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.instagram-feed__rodape { text-align: center; }
+
+.instagram-feed__btn-seguir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.instagram-feed__btn-seguir:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+.instagram-feed__btn-seguir svg { width: 18px; height: 18px; }
+
+
+/* ── 10. DEPOIMENTOS ────────────────────────────────────────
+   3 cards com avaliações de clientes.                        */
+.testimonials {
+  padding: 4rem 0;
+  background-color: var(--cor-fundo);
+}
+
+.testimonials__cabecalho {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.testimonials__titulo { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 700; }
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.depoimento-card {
+  position: relative;
+  border-radius: var(--raio-card);
+  border: 1px solid var(--cor-borda);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: var(--cor-fundo-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.depoimento-card:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.18);
+}
+
+.depoimento-card__aspas {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.3;
+}
+
+.depoimento-card__estrelas {
+  display: flex;
+  gap: 0.25rem;
+}
+.estrela { width: 16px; height: 16px; }
+
+.depoimento-card__texto {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+}
+
+.depoimento-card__autor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.depoimento-card__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto);
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.depoimento-card__nome {
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.depoimento-card__cidade {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+
+/* ── 11. BANNER PROMOCIONAL ─────────────────────────────────
+   Seção de destaque com gradiente roxo animado.              */
+.promo-banner {
+  position: relative;
+  padding: 5rem 0 7rem;
+  overflow: hidden;
+}
+
+/* Fundo com gradiente que se move (animação via CSS) */
+.promo-banner__fundo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #4C1D95 0%, #7B2EFF 40%, #A855F7 70%, #4C1D95 100%);
+  background-size: 300% 300%;
+  animation: gradiente-animado 6s ease-in-out infinite;
+}
+
+/* Grade decorativa */
+.promo-banner__grade {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Orbes de luz */
+.promo-banner__orbes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
+}
+
+.promo-banner__conteudo {
+  position: relative;
+  z-index: 10;
+  max-width: 62.5rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.promo-banner__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.promo-banner__eyebrow svg { width: 28px; height: 28px; color: rgba(255,255,255,0.8); }
+.promo-banner__eyebrow-texto {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.promo-banner__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(60px, 12vw, 160px);
+  color: var(--cor-texto);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.promo-banner__cidade {
+  color: var(--cor-texto);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.promo-banner__valor {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(40px, 6vw, 80px);
+  color: var(--cor-texto);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.promo-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background-color: var(--cor-texto);
+  color: var(--cor-primaria);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.promo-banner__btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+}
+.promo-banner__btn svg { width: 18px; height: 18px; }
+
+
+/* ── 12. RODAPÉ ─────────────────────────────────────────────
+   4 colunas: marca, 3 grupos de links e contato.             */
+.footer {
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo);
+}
+
+.footer__grid {
+  padding: 4rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+/* Coluna da marca */
+.footer__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+.footer__logo-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--cor-texto);
+  letter-spacing: 0.1em;
+}
+.footer__logo-numero {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--cor-destaque);
+  letter-spacing: 0.1em;
+}
+
+.footer__descricao {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 18rem;
+}
+
+.footer__redes-sociais {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer__social-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.footer__social-btn:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-destaque);
+  background-color: rgba(123, 46, 255, 0.1);
+  transform: scale(1.1);
+}
+.footer__social-btn svg { width: 15px; height: 15px; }
+
+/* Colunas de links */
+.footer__titulo-col {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--cor-destaque);
+  margin-bottom: 1.25rem;
+}
+
+.footer__lista { display: flex; flex-direction: column; gap: 0.75rem; }
+.footer__link {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer__link:hover { color: var(--cor-texto); }
+
+/* Coluna de contato */
+.footer__contato-lista { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+
+.footer__contato-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.footer__contato-icone {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--cor-primaria);
+  width: 14px;
+  height: 14px;
+}
+.footer__contato-texto {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+.footer__contato-sub {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.footer__btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.footer__btn-whatsapp:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+.footer__btn-whatsapp svg { width: 16px; height: 16px; }
+
+/* Barra inferior do rodapé */
+.footer__barra-inferior {
+  border-top: 1px solid var(--cor-borda);
+}
+.footer__copyright {
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+}
+.footer__coracaoo { color: var(--cor-destaque); }
+
+
+/* ── 13. BOTÃO FLUTUANTE WHATSAPP ───────────────────────────
+   Sempre visível no canto inferior direito.                  */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  animation: pulso-brilho 2.5s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.15);
+  animation-play-state: paused;
+}
+.whatsapp-float svg { width: 24px; height: 24px; }

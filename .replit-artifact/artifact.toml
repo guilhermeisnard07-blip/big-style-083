@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "BIG STYLE 083"
+version = "1.0.0"
+id = "artifacts/big-style-083"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18169
+
+[services.development]
+run = "pnpm --filter @workspace/big-style-083 run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/big-style-083", "run", "build" ]
+publicDir = "artifacts/big-style-083/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18169"
+BASE_PATH = "/"

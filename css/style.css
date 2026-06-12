@@ -1,0 +1,283 @@
+/*
+ * ============================================================
+ *  ESTILOS BASE — BIG STYLE 083
+ * ============================================================
+ *  Este arquivo contém:
+ *  → Importação das fontes (Google Fonts)
+ *  → Variáveis CSS (cores, fontes, espaçamentos)
+ *  → Reset e estilos globais
+ *  → Utilitários reutilizáveis
+ *  → Animações (@keyframes)
+ *  → Classes de animação de entrada (IntersectionObserver)
+ *
+ *  COMO ALTERAR CORES:
+ *  Edite as variáveis na seção ":root" abaixo.
+ *  As mudanças refletem em todo o site automaticamente.
+ * ============================================================
+ */
+
+/* ── 1. FONTES ──────────────────────────────────────────────
+   Bebas Neue → títulos grandes
+   Inter       → textos e interface                           */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* ── 2. VARIÁVEIS CSS (EDITE AQUI PARA MUDAR AS CORES) ─────
+   Para mudar a cor roxa principal: edite --cor-primaria
+   Para mudar o roxo claro dos destaques: edite --cor-destaque  */
+:root {
+  /* Fundos */
+  --cor-fundo:      #050505;   /* Preto quase total — fundo principal */
+  --cor-fundo-meio: #0a0a0a;   /* Fundo levemente mais claro */
+  --cor-fundo-card: #111111;   /* Fundo de cards e barra de benefícios */
+  --cor-fundo-img:  #0d0d0d;   /* Fundo de área de imagem nos cards */
+
+  /* Marca — Roxo */
+  --cor-primaria:   #7B2EFF;   /* ← ROXO VIBRANTE — cor principal da marca */
+  --cor-primaria-escura: #4C1D95; /* Roxo mais escuro */
+  --cor-destaque:   #A855F7;   /* ← ROXO NEON — destaques e ícones */
+
+  /* Bordas */
+  --cor-borda:      #2A2A2A;   /* Borda cinza escura */
+
+  /* Textos */
+  --cor-texto:       #ffffff;   /* Branco puro */
+  --cor-texto-corpo: #d1d5db;   /* Cinza claro (gray-300) */
+  --cor-texto-muted: #9ca3af;   /* Cinza médio (gray-400) */
+  --cor-texto-dim:   #6b7280;   /* Cinza escuro (gray-500) */
+
+  /* Tipografia */
+  --fonte-titulo: 'Bebas Neue', cursive;
+  --fonte-corpo:  'Inter', sans-serif;
+
+  /* Layout */
+  --largura-max: 80rem;         /* max-w-7xl = 1280px */
+  --raio-card:   1rem;          /* border-radius dos cards */
+}
+
+
+/* ── 3. RESET E BASE ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+/* ── 4. UTILITÁRIOS GLOBAIS ─────────────────────────────── */
+
+/* Container centralizado — mesmo que max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 */
+.container {
+  max-width: var(--largura-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Fonte de títulos (Bebas Neue) */
+.bebas {
+  font-family: var(--fonte-titulo);
+}
+
+/* Texto com gradiente roxo */
+.texto-gradiente {
+  background: linear-gradient(90deg, #A855F7 0%, #7B2EFF 60%, #4C1D95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+}
+
+/* Efeito neon no texto */
+.neon-texto {
+  text-shadow: 0 0 20px #A855F7, 0 0 40px #7B2EFF, 0 0 80px #4C1D95;
+}
+
+/* Efeito neon em caixas */
+.neon-caixa {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(123, 46, 255, 0.2);
+}
+
+/* Fundo de grade urbana (padrão de linhas roxas — usado no Hero) */
+.grade-urbana {
+  background-image:
+    linear-gradient(rgba(123, 46, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 46, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Ocultar scrollbar (usado no carrossel) */
+.sem-scrollbar::-webkit-scrollbar { display: none; }
+.sem-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Divisor decorativo de seção */
+.divisor-secao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.divisor-secao__linha {
+  height: 1px;
+  width: 4rem;
+  background-color: var(--cor-borda);
+}
+.divisor-secao__barra {
+  height: 4px;
+  width: 3rem;
+  border-radius: 9999px;
+  background-color: var(--cor-primaria);
+}
+
+/* Cabeçalho de seção padrão */
+.secao-eyebrow {
+  color: var(--cor-destaque);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.secao-titulo {
+  font-family: var(--fonte-titulo);
+  color: var(--cor-texto);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+
+/* ── 5. ANIMAÇÕES @KEYFRAMES ────────────────────────────── */
+
+/* Mascote sobe e desce suavemente */
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Botão WhatsApp pulsa com brilho roxo */
+@keyframes pulso-brilho {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.9), 0 0 60px rgba(123, 46, 255, 0.4);
+  }
+}
+
+/* Faixa de anúncios rola da direita para esquerda */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Gradiente do PromoBanner se move */
+@keyframes gradiente-animado {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* Header entra de cima ao carregar a página */
+@keyframes entrar-topo {
+  from { transform: translateY(-80px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+
+/* ── 6. CLASSES DE ANIMAÇÃO (IntersectionObserver) ──────── */
+/*
+ * Elementos começam invisíveis e ganham a classe .visivel
+ * quando entram na janela de visualização (via main.js).
+ *
+ * Variantes:
+ *  .anim-subir     → sobe e aparece (padrão)
+ *  .anim-esquerda  → vem da esquerda
+ *  .anim-direita   → vem da direita
+ *  .anim-escalar   → escala e aparece
+ */
+
+.anim-subir {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-esquerda {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-direita {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-escalar {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estado visível — adicionado pelo IntersectionObserver em main.js */
+.anim-subir.visivel,
+.anim-esquerda.visivel,
+.anim-direita.visivel,
+.anim-escalar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* Atrasos escalonados para grids e listas */
+.atraso-1  { transition-delay: 0.08s; }
+.atraso-2  { transition-delay: 0.16s; }
+.atraso-3  { transition-delay: 0.24s; }
+.atraso-4  { transition-delay: 0.32s; }
+.atraso-5  { transition-delay: 0.40s; }
+.atraso-6  { transition-delay: 0.48s; }
+.atraso-7  { transition-delay: 0.56s; }
+.atraso-8  { transition-delay: 0.64s; }
+.atraso-9  { transition-delay: 0.72s; }

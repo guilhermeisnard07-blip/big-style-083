@@ -1,0 +1,154 @@
+/*
+ * ============================================================
+ *  RESPONSIVIDADE — BIG STYLE 083
+ * ============================================================
+ *  Media queries para adaptar o layout a diferentes telas.
+ *
+ *  Breakpoints usados (equivalentes ao Tailwind CSS):
+ *    sm  → 640px  (celular grande / tablet pequeno)
+ *    md  → 768px  (tablet)
+ *    lg  → 1024px (desktop)
+ *    xl  → 1280px (desktop grande)
+ *
+ *  ESTRATÉGIA: Mobile First
+ *  Os estilos base em components.css são para mobile.
+ *  Aqui estendemos para telas maiores.
+ * ============================================================
+ */
+
+
+/* ── SM: 640px+ (celular grande) ─────────────────────────── */
+@media (min-width: 640px) {
+
+  /* Container: mais padding lateral */
+  .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  /* Header: mostra botão WhatsApp */
+  .header__btn-whatsapp { display: flex; }
+
+  /* Header: aumenta altura */
+  .header__inner { height: 4rem; }
+
+  /* Product card: levemente maior */
+  .product-card { width: 16rem; }
+
+  /* Footer: barra inferior em linha */
+  .footer__copyright { flex-direction: row; justify-content: space-between; }
+}
+
+
+/* ── MD: 768px+ (tablet) ─────────────────────────────────── */
+@media (min-width: 768px) {
+
+  /* Features bar: 4 colunas */
+  .features-bar__grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* Carrossel: gap maior */
+  .carrossel__pista { gap: 1.25rem; }
+
+  /* Mais Vendidos: 4 colunas */
+  .best-sellers__grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* Depoimentos: 3 colunas */
+  .testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Instagram: gap maior */
+  .instagram-feed__grade { gap: 0.5rem; }
+
+  /* Footer: 2 colunas */
+  .footer__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ── LG: 1024px+ (desktop) ───────────────────────────────── */
+@media (min-width: 1024px) {
+
+  /* Container: padding padrão de desktop */
+  .container { padding-left: 2rem; padding-right: 2rem; }
+
+  /* Header: altura maior, mostra nav desktop, esconde hambúrguer */
+  .header__inner { height: 5rem; }
+  .nav-desktop { display: flex; }
+  .header__btn-menu { display: none; }
+  .header__btn-whatsapp span { display: inline; } /* mostra texto "Fale Conosco" */
+
+  /* Hero: grade de 2 colunas */
+  .hero__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .hero__conteudo {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+  .hero__subtitulo { font-size: 1.25rem; }
+  .hero__mascote { max-width: 36rem; }
+
+  /* Categorias: gap maior */
+  .categories { padding: 6rem 0; }
+  .categories__grid { gap: 2.5rem; }
+  .category-item__circulo { width: 6rem; height: 6rem; }
+  .category-item__circulo svg { width: 32px; height: 32px; }
+
+  /* Novidades */
+  .new-arrivals { padding: 6rem 0; }
+  .product-card { width: 16rem; }
+
+  /* Mais Vendidos */
+  .best-sellers { padding: 6rem 0; }
+
+  /* Nossa História: 2 colunas */
+  .brand-story__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .brand-story__paragrafos { font-size: 1.125rem; }
+
+  /* Instagram */
+  .instagram-feed__grade { gap: 0.5rem; }
+
+  /* Depoimentos */
+  .testimonials { padding: 6rem 0; }
+
+  /* Promo Banner */
+  .promo-banner { padding: 7rem 0; }
+
+  /* Footer: 5 colunas (marca ocupa 2) */
+  .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+  .footer__col-marca { grid-column: span 2; }
+
+  /* Logo nos tamanhos maiores */
+  .header__logo-nome,
+  .header__logo-numero { font-size: 1.875rem; }
+}
+
+
+/* ── XL: 1280px+ (desktop grande) ───────────────────────── */
+@media (min-width: 1280px) {
+
+  /* Hero: mascote ainda maior */
+  .hero__mascote { max-width: 45rem; }
+
+  /* Carrossel: cards um pouco maiores */
+  .product-card { width: 17rem; }
+}
+
+
+/* ── Ajustes específicos de hover para touch ─────────────── */
+/*
+ * Em dispositivos touch, desativa os efeitos de hover
+ * que dependem de mouse, evitando comportamento confuso.
+ */
+@media (hover: none) {
+  .feature-item:hover,
+  .category-item:hover,
+  .product-card:hover,
+  .destaque-card:hover,
+  .depoimento-card:hover,
+  .stat-card:hover { transform: none; box-shadow: none; }
+
+  .product-card:hover .product-card__imagem { transform: none; }
+  .destaque-card:hover .destaque-card__imagem { transform: none; }
+  .instagram-item:hover img { transform: none; }
+  .instagram-item:hover .instagram-item__overlay { opacity: 0; }
+}

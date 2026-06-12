@@ -1,0 +1,91 @@
+/*
+ * ╔══════════════════════════════════════════════════════════════════╗
+ * ║  ESTILOS DA MARCA — BIG STYLE 083                                ║
+ * ╠══════════════════════════════════════════════════════════════════╣
+ * ║  Contém apenas os estilos específicos da identidade visual:      ║
+ * ║  → Fonte Bebas Neue (títulos)                                    ║
+ * ║  → Efeitos de neon e brilho roxo                                 ║
+ * ║  → Fundo de grade urbana                                         ║
+ * ║  → Animações: marquee, pulse-glow, float                         ║
+ * ║  → Utilitário de scrollbar invisível                             ║
+ * ║                                                                  ║
+ * ║  Para mudar as CORES principais do site, edite as variáveis      ║
+ * ║  CSS em src/index.css (seção :root → --primary, --accent).       ║
+ * ╚══════════════════════════════════════════════════════════════════╝
+ */
+
+/* ── Fonte de títulos ─────────────────────────────────────────────── */
+/* Aplicada via classe .font-bebas nos componentes */
+.font-bebas {
+  font-family: 'Bebas Neue', cursive;
+}
+
+/* ── Efeitos de brilho neon (texto) ──────────────────────────────── */
+/* Usado nos títulos em destaque do Hero e outras seções */
+.neon-glow {
+  text-shadow: 0 0 20px #A855F7, 0 0 40px #7B2EFF, 0 0 80px #4C1D95;
+}
+
+/* ── Efeitos de brilho neon (caixas/cards) ───────────────────────── */
+.neon-box-glow {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(123, 46, 255, 0.2);
+}
+
+/* ── Texto com gradiente roxo ────────────────────────────────────── */
+/* Classe utilitária para textos com degradê da identidade da marca */
+.purple-gradient-text {
+  background: linear-gradient(135deg, #A855F7 0%, #7B2EFF 50%, #4C1D95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Fundo de grade urbana ───────────────────────────────────────── */
+/* Padrão de linhas roxas sutis usado no Hero e PromoBanner */
+.urban-grid-bg {
+  background-image:
+    linear-gradient(rgba(123, 46, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 46, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Hover com elevação e brilho nos cards ───────────────────────── */
+.card-hover-glow {
+  transition: all 0.3s ease;
+}
+.card-hover-glow:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.5), 0 0 60px rgba(123, 46, 255, 0.2);
+}
+
+/* ── Animação: marquee (barra de anúncios em loop) ───────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* ── Animação: pulse-glow (botão WhatsApp flutuante) ─────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+  50%       { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 60px rgba(123, 46, 255, 0.4); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ── Animação: float (mascote do Hero sobe e desce) ──────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Scrollbar invisível ─────────────────────────────────────────── */
+/* Usado no carrossel de Novidades para esconder a barra de rolagem */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
